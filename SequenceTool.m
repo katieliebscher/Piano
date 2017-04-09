@@ -22,7 +22,7 @@ function varargout = SequenceTool(varargin)
 
 % Edit the above text to modify the response to help SequenceTool
 
-% Last Modified by GUIDE v2.5 30-Mar-2017 11:59:27
+% Last Modified by GUIDE v2.5 09-Apr-2017 16:05:29
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -69,6 +69,7 @@ for iRow=1:10
         set(hButton(iRow,iColumn),'Callback',{@CardButton_Callback,handles});
     end
 end
+setappdata(gcf,'hButton',hButton);
 
 % --- Outputs from this function are returned to the command line.
 function varargout = SequenceTool_OutputFcn(hObject, eventdata, handles) 
@@ -128,7 +129,13 @@ function ResetButton_Callback(hObject, eventdata, handles)
 % hObject    handle to ResetButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+for iRow=1:10
+    for iColumn=1:10
+        buttonName=['R',num2str(iRow),'C',num2str(iColumn)];
+        hButton(iRow,iColumn)=findobj('Tag',buttonName);
+        set(hButton(iRow,iColumn),'BackGroundColor',[0.9020 0.7804 0.2510])
+    end
+end
 
 % --- Executes on button press in R1C3.
 function CardButton_Callback(hObject, eventdata, handles)
@@ -137,9 +144,14 @@ function CardButton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of button that called it
-Token(handles,hObject);
 
+[PlayerNum]=PlayerChoiceF(handles);
+if PlayerNum==1
+   PlayerOneTokenF(handles,hObject);
+else 
+    PlayerTwoTokenF(handles,hObject);
 
+end
 
 % --- Executes on button press in PCard1.
 function PCard1_Callback(hObject, eventdata, handles)
@@ -198,3 +210,5 @@ function PCard7_Callback(hObject, eventdata, handles)
 % hObject    handle to PCard7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+

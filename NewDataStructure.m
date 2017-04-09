@@ -490,7 +490,7 @@ end
 
 
 
-for i=6:10
+for i=5:10
    j=i-4;
    played(i,j)=1;
 end
