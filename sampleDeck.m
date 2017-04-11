@@ -1,6 +1,6 @@
-function sampleDeck(BOB);
+function playDeck = sampleDeck(BOB);
+BOB=1;
 
-BOB = 1;
 
 card(1).number = 1;
 card(1).LR = 1;
@@ -23,5 +23,3 @@ deck = card(1:4);
 playDeck = shuffleDeck(deck);
 
 save('playDeck','playDeck');
-
-end
