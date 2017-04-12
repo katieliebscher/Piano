@@ -69,7 +69,14 @@ for iRow=1:10
         set(hButton(iRow,iColumn),'Callback',{@CardButton_Callback,handles});
     end
 end
-setappdata(gcf,'hButton',hButton);
+
+setappdata(gcf,'hButtons',hButton);
+
+% Set Leprechaun Pictures 
+CardsImage(handles);
+PlayerHand(handles);
+
+
 
 % --- Outputs from this function are returned to the command line.
 function varargout = SequenceTool_OutputFcn(hObject, eventdata, handles) 
@@ -77,10 +84,6 @@ function varargout = SequenceTool_OutputFcn(hObject, eventdata, handles)
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-% Set Leprechaun Pictures 
-CardsImage(handles);
-PlayerHand(handles);
 
 
 % --- Executes on selection change in AiChoice.
@@ -137,21 +140,18 @@ for iRow=1:10
     end
 end
 
-% --- Executes on button press in R1C3.
+% --- Executes on button press
 function CardButton_Callback(hObject, eventdata, handles)
 % hObject    handle to button that called it (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 % Hint: get(hObject,'Value') returns toggle state of button that called it
+playRealCardsInOrder(handles,hObject);
 
-[PlayerNum]=PlayerChoiceF(handles);
-if PlayerNum==1
-   PlayerOneTokenF(handles,hObject);
-else 
-    PlayerTwoTokenF(handles,hObject);
 
-end
+
+
 
 % --- Executes on button press in PCard1.
 function PCard1_Callback(hObject, eventdata, handles)

@@ -1,4 +1,4 @@
-function shuffledV = shuffleDeck(v)
+function shuffledDeck = shuffleDeck(v)
 % This function will shuffle every position of a vector or cell array and
 % move it to a random spot, switch the entry with a random entry.
 
@@ -10,5 +10,4 @@ for iCnt = 1:totalDeck
     v(iCnt) = y;
     v(switchSpot) = x;
 end
-shuffledV = v;
-disp(shuffledV);
+shuffledDeck = v;
