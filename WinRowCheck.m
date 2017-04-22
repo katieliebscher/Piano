@@ -1,12 +1,14 @@
 %% Win Row Check
 
+% needs to be made into a function still
+
 load('data')
+
 %%
 exceed=0;
 sum=0;
 won=0;
 a=1;
-sumGreen=0;
 sumRed=0;
 sumBlue=0;
 
@@ -15,22 +17,20 @@ for j=1:10
     exceed=0;
     while  ~won && ~exceed
         for i=1+k:5+k
-            %sum=played(j,i)+sum;
-            if greenArray(j,i)==1
-                sumGreen=sumGreen+1;
-            elseif blueArray(j,i)==1
+
+            tagBox = ['R',num2str(j),'C',num2str(i)];
+            
+            if handles.tagBox ==1 && BackgroundColor == [0 0 1] % if blue
                 sumBlue=sumBlue+1;
-            elseif redArray(j,i)==1
+            else handles.tagBox ==1 && BackgroundColor == [1 0 0] % if red
                 sumRed==sumRed+1;
             end
         end
         
-        if sumRed > 4 || sumGreen > 4 || sumBlue >4
+        if sumRed > 4 || sumBlue > 4
             rowFound(a)=j;
             colFound(a)=1+k;
-            if sumGreen > 4
-                winner='Green'
-            elseif sumBlue > 4
+            if sumBlue > 4
                 winner='Blue'
             elseif sumRed > 4
                 winner='Red'
@@ -47,7 +47,6 @@ for j=1:10
         end
         
         sum=0;
-        sumGreen=0;
         sumRed=0;
         sumBlue=0;
         k=k+1;
@@ -62,4 +61,3 @@ if won
 else
     disp('No Row Winner')
 end
-
